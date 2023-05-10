@@ -20,23 +20,22 @@ CREATE TABLE IF NOT EXISTS public."BENEFICIOS"
 
 DROP TABLE IF EXISTS public."CENSO";
 
-CREATE TABLE IF NOT EXISTS public."CENSO"
+create table if not exists public."CENSO"
 (
-    id bigint NOT NULL,
-    rango_edades varchar(50) COLLATE pg_catalog."default",
+    id                    bigint       not null
+        primary key,
+    rango_edades          varchar(50),
     cantidad_rango_edades bigint,
-    grado varchar(50) COLLATE pg_catalog."default",
-    cantidad_grado bigint,
-    estado_civil varchar(50) COLLATE pg_catalog."default",
+    grado                 varchar(50),
+    cantidad_grado        bigint,
+    estado_civil          varchar(50),
     cantidad_estado_civil bigint,
-    etnia varchar(50) COLLATE pg_catalog."default",
-    cantidad_etnia bigint,
-    hogar varchar(50) COLLATE pg_catalog."default",
-    cantidad_hogar bigint,
-    ingreso_minimo bigint,
-    ingreso_maximo bigint,
-    cantidad_ingreso bigint,
-    CONSTRAINT "CENSO_pkey" PRIMARY KEY (id)
+    hogar                 varchar(50),
+    cantidad_hogar        bigint,
+    ingreso               varchar(100) not null,
+    cantidad_ingreso      bigint,
+    estado                varchar(50),
+    poblacion             bigint
 );
 
 
