@@ -21,20 +21,19 @@ DROP TABLE IF EXISTS public."CENSO";
 
 create table if not exists public."CENSO"
 (
-    id                    bigint       not null
-        primary key,
-    rango_edades          varchar(50),
+    id bigint not null primary key,
+    rango_edades varchar(50),
     cantidad_rango_edades bigint,
-    grado                 varchar(50),
-    cantidad_grado        bigint,
-    estado_civil          varchar(50),
+    grado varchar(50),
+    cantidad_grado bigint,
+    estado_civil varchar(50),
     cantidad_estado_civil bigint,
-    hogar                 varchar(50),
-    cantidad_hogar        bigint,
-    ingreso               varchar(100),
-    cantidad_ingreso      bigint,
-    estado                varchar(50),
-    poblacion             bigint
+    hogar varchar(50),
+    cantidad_hogar bigint,
+    ingreso varchar(100),
+    cantidad_ingreso bigint,
+    estado varchar(50),
+    poblacion bigint
 );
 
 
