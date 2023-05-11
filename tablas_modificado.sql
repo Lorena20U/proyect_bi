@@ -8,12 +8,11 @@ DROP TABLE IF EXISTS public."BENEFICIOS";
 CREATE TABLE IF NOT EXISTS public."BENEFICIOS"
 (
     id bigint NOT NULL,
-    nombre_beneficio varchar(50) COLLATE pg_catalog."default",
+    nombre_beneficio varchar(150) COLLATE pg_catalog."default",
     is_covered varchar(15) COLLATE pg_catalog."default",
     quant_limit_on_svc varchar(15) COLLATE pg_catalog."default",
-    explicacion varchar(150) COLLATE pg_catalog."default",
-    is_excel_from_inn_moop varchar(15) COLLATE pg_catalog."default",
-    is_excel_from_onn_moop varchar(15) COLLATE pg_catalog."default",
+    is_excl_from_inn_moop varchar(15) COLLATE pg_catalog."default",
+    is_excl_from_onn_moop varchar(15) COLLATE pg_catalog."default",
     plan_id varchar(50) COLLATE pg_catalog."default",
     CONSTRAINT "BENEFICIOS_pkey" PRIMARY KEY (id)
 );
@@ -32,7 +31,7 @@ create table if not exists public."CENSO"
     cantidad_estado_civil bigint,
     hogar                 varchar(50),
     cantidad_hogar        bigint,
-    ingreso               varchar(100) not null,
+    ingreso               varchar(100),
     cantidad_ingreso      bigint,
     estado                varchar(50),
     poblacion             bigint
@@ -67,11 +66,11 @@ CREATE TABLE IF NOT EXISTS public."PERFILES"
 (
     id bigint NOT NULL,
     id_censo bigint,
+    edad varchar(100) COLLATE pg_catalog."default",
+    grado varchar(100) COLLATE pg_catalog."default",
     estado_civil varchar(50) COLLATE pg_catalog."default",
-    etnia varchar(50) COLLATE pg_catalog."default",
     hogar varchar(50) COLLATE pg_catalog."default",
-    ingreso_minimo bigint,
-    ingreso_maximo bigint,
+    ingreso varchar(100) COLLATE pg_catalog."default",
     estado varchar(50) COLLATE pg_catalog."default",
     CONSTRAINT "PERFILES_pkey" PRIMARY KEY (id)
 );
@@ -81,13 +80,12 @@ DROP TABLE IF EXISTS public."PLANES";
 CREATE TABLE IF NOT EXISTS public."PLANES"
 (
     id varchar(25) COLLATE pg_catalog."default" NOT NULL,
-    estado_id bigint,
     nombre_plan varchar(200) COLLATE pg_catalog."default",
     tipo varchar(10) COLLATE pg_catalog."default",
     nivel_metal varchar(15) COLLATE pg_catalog."default",
     nombre_proveedor varchar(100) COLLATE pg_catalog."default",
     estado varchar(50) COLLATE pg_catalog."default",
-    perfiles_id bigint,
+    id_perfil bigint,
     CONSTRAINT "PLANES_pkey" PRIMARY KEY (id)
 );
 
@@ -137,7 +135,7 @@ ALTER TABLE IF EXISTS public."PERFILES"
 
 
 ALTER TABLE IF EXISTS public."PLANES"
-    ADD CONSTRAINT fk_planes_cod_perfiles FOREIGN KEY (perfiles_id)
+    ADD CONSTRAINT fk_planes_cod_perfiles FOREIGN KEY (id_perfil)
     REFERENCES public."PERFILES" (id) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
